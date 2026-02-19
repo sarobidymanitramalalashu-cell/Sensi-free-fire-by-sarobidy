@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Générateur Sensibilité Free Fire</title>
+<title>Générateur Sensibilité</title>
 
 <style>
 body{
@@ -16,27 +15,36 @@ padding-top:60px;
 
 input{
 padding:15px;
-width:80%;
-max-width:300px;
-border-radius:12px;
-border:none;
+width:85%;
+max-width:320px;
+border-radius:10px;
+border:2px solid #ff0000;
 font-size:16px;
-margin-top:20px;
+margin-top:15px;
+background:white;
+color:black;
 }
 
 button{
 padding:15px 25px;
 margin-top:20px;
-border-radius:12px;
+border-radius:10px;
 border:none;
 font-size:16px;
-background:#ff0000;
+background:red;
 color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+#message{
+margin-top:15px;
+color:yellow;
 font-weight:bold;
 }
 
 #resultat{
-margin-top:30px;
+margin-top:25px;
 font-size:18px;
 line-height:1.6;
 }
@@ -45,66 +53,36 @@ line-height:1.6;
 
 <body>
 
-<h1>🔥 Générateur Sensibilité Headshot PRO</h1>
+<h1>🔥 Générateur Sensibilité Headshot</h1>
 
-<p>Entrer le modèle de votre téléphone :</p>
+<p>📝 Ampidiro eto ny anaran'ny téléphone :</p>
 
-<input type="text" id="telephone" placeholder="Ex: Nokia 8V 5G">
+<input type="text" id="telephone" placeholder="Ohatra: Nokia 8V 5G">
 
 <br>
 
-<button onclick="generer()">Générer Sensibilité</button>
+<button onclick="generer()">VALIDE</button>
 
+<div id="message"></div>
 <div id="resultat"></div>
 
 <script>
 function generer(){
 
-let tel=document.getElementById("telephone").value.toLowerCase();
+let tel=document.getElementById("telephone").value.trim().toLowerCase();
+
+/* Raha tsy misy soratra */
+if(tel===""){
+document.getElementById("message").innerHTML=
+"⚠️ Ampidiro aloha ny anaran'ny téléphone!";
+document.getElementById("resultat").innerHTML="";
+return;
+}
+
+document.getElementById("message").innerHTML=
+"✅ Téléphone valide ! Calcul en cours...";
 
 let general, reddot, scope2x, scope4x, awm, dpi;
 
-/* TELEPHONE PUISSANT (120hz / Snapdragon haut) */
-if(tel.includes("8v") || tel.includes("s21") || tel.includes("iphone")){
-general=100;
-reddot=95;
-scope2x=90;
-scope4x=80;
-awm=55;
-dpi=620;
-}
-
-/* TELEPHONE MOYEN */
-else if(tel.includes("samsung") || tel.includes("xiaomi") || tel.includes("oppo")){
-general=97;
-reddot=92;
-scope2x=86;
-scope4x=76;
-awm=52;
-dpi=560;
-}
-
-/* TELEPHONE FAIBLE */
-else{
-general=94;
-reddot=89;
-scope2x=83;
-scope4x=72;
-awm=48;
-dpi=520;
-}
-
-document.getElementById("resultat").innerHTML=
-"🎯 <b>Sensibilité Headshot recommandée :</b><br><br>"+
-"🔹 Général : "+general+"<br>"+
-"🔹 Red Dot : "+reddot+"<br>"+
-"🔹 2x Scope : "+scope2x+"<br>"+
-"🔹 4x Scope : "+scope4x+"<br>"+
-"🔹 AWM : "+awm+"<br><br>"+
-"⚡ DPI conseillé : "+dpi+
-"<br><br>✅ Optimisé pour drag headshot stable";
-}
-</script>
-
-</body>
-</html>
+/* téléphone puissant */
+if(tel.includes("8v") || tel.includes("iphone") || tel.includes("s
